@@ -3,9 +3,9 @@ name: Generate Snake Game
 on:
   push:
     branches:
-      - main  # ou outro nome do branch principal, se aplicável
+      - main
   schedule:
-    - cron: '0 0 * * *'  # isso executará a ação diariamente à meia-noite UTC
+    - cron: '*/1 * * * *'
 
 jobs:
   build:
@@ -15,9 +15,10 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Generate Snake Game
-      uses: RaphaelTW/workflows@main
+      uses: Platane/snk@v3
       with:
         github_user_name: ${{ github.repository_owner }}
         outputs: |
           dist/github-snake.svg
           dist/github-snake-dark.svg?palette=github-dark
+
